@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肤质检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/skinTest.css"/>
+    <style type="text/css"></style>
+</head>
+<body>
+<div class="container">
+    <div id="q1"></div>
+    <div id="q2"></div>
+    <div class='clearBoth'></div>
+    <div class='footer'>下一题</div>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/response.js'></script>
+<script src='js/class/normalQuestion.js'></script>
+<script>
+    $(function () {
+
+        var q = new NormalQuestion('#q1', {
+                    title: '你的防晒习惯是？',
+                    sections: [{
+                        question: '111',
+                        options: [
+                            {content: '从不防晒', imgUrl: 'img/man.png', type: 1, score: 2},
+                            {content: '从不防晒', imgUrl: 'img/man.png'},
+                            {content: '从不防晒', imgUrl: 'img/man.png'},
+                            {content: '从不防晒', imgUrl: 'img/man.png'}
+                        ],
+                    }],
+                    colNum: 1,
+                    selectType: 'multi'
+                }
+        )
+        var q = new NormalQuestion('#q2', {
+                    title: '你的防晒习惯是？',
+                    sections: {
+                        question: null,
+                        options: [
+                            {content: '从不防晒', imgUrl: 'img/man.png', type: 1, score: 2},
+                            {content: '从不防晒', imgUrl: 'img/man.png'},
+                            {content: '从不防晒', imgUrl: 'img/man.png'},
+                            {content: '从不防晒', imgUrl: 'img/man.png'}
+                        ],
+                    },
+                    colNum: 2,
+                    selectType: 'single'
+                }
+        )
+
+    })
+</script>
+</body>
+</html>

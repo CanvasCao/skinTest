@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肤质检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/skinTest.css"/>
+    <style type="text/css"></style>
+</head>
+<body>
+<div class="container">
+    <div class='title'>
+        <div class='titleDes'>你的防晒习惯是？</div>
+    </div>
+
+    <div class='answer'>
+        <div class='option'><span>从不防晒</span></div>
+        <div class='option'><span>偶尔防晒</span></div>
+        <div class='option'><span>经常防晒</span></div>
+        <div class='option'><span>四季防晒</span></div>
+        <div class='optionClearBoth'></div>
+
+    </div>
+
+
+    <div class='title'>
+        <div class='titleDes'> 如何描述自己的肤色？</div>
+    </div>
+    <div class='answer'>
+        <div class='option'><span>偏深偏黑</span></div>
+        <div class='option'><span>偏黄偏黯淡</span></div>
+        <div class='option'><span>正常肤色</span></div>
+        <div class='option'><span>白皙</span></div>
+        <div class='optionClearBoth'></div>
+
+    </div>
+
+    <div class='clearBoth'></div>
+    <div class='footer'>下一题</div>
+
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/response.js'></script>
+<script>
+    $(function () {
+        $('.option')
+                .css({
+                    width: (100 / 1 - 2) + '%',
+                })
+                .click(function () {
+                    $(this).addClass('optionClicked').siblings().removeClass('optionClicked');
+                });
+    })
+</script>
+</body>
+</html>

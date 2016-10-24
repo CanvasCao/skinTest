@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肤质检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/skinTest.css"/>
+    <link rel="stylesheet" href="css/tab.css"/>
+    <style type="text/css"></style>
+</head>
+<body>
+<div class="container">
+    <div class='title'>
+        <div class='titleDes'>以下场景中你的皮肤状况是？</div>
+        <div class='titleTab'>
+            <span class='titleTabOption titleTabOptionCurrent'>洗完脸后</span>
+            <span>></span>
+            <span class='titleTabOption'>干燥环境</span>
+            <span>></span>
+            <span class='titleTabOption'>潮湿环境</span>
+        </div>
+    </div>
+
+    <div class='questionUl'>
+        <div class="questionLi">
+            <div class=answerImg>
+                <img src="img/q3/q3s1.png" width="100%"/>
+            </div>
+            <div class='answer'>
+                <div class='option'><span>很少，甚至觉得有些干</span></div>
+                <div class='option'><span>不干也不油</span></div>
+                <div class='option'><span>T油U干</span></div>
+                <div class='option'><span>明显觉得油腻了2</span></div>
+                <div class='optionClearBoth'></div>
+
+            </div>
+        </div>
+        <div class="questionLi">
+            <div class=answerImg>
+                <img src="img/q3/q3s1.png" width="100%"/>
+            </div>
+            <div class='answer'>
+                <div class='option'><span>很少，甚至觉得有些干2</span></div>
+                <div class='option'><span>不干也不油2</span></div>
+                <div class='option'><span>T油U干2</span></div>
+                <div class='option'><span>明显觉得油腻了2</span></div>
+                <div class='optionClearBoth'></div>
+
+            </div>
+        </div>
+        <div class="questionLi">
+            <div class=answerImg>
+                <img src="img/q3/q3s1.png" width="100%"/>
+            </div>
+            <div class='answer'>
+                <div class='option'><span>很少，甚至觉得有些干3</span></div>
+                <div class='option'><span>不干也不油3</span></div>
+                <div class='option'><span>T油U干3</span></div>
+                <div class='option'><span>明显觉得油腻了3</span></div>
+                <div class='optionClearBoth'></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class='clearBoth'></div>
+    <div class='footer'>下一题</div>
+
+</div>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/response.js'></script>
+<script>
+    $(function () {
+        //init....................................
+        var qIndex = 0;
+        var qLen = $('.questionLi').length;
+        $('.questionLi').eq(qIndex).show().siblings().hide();
+        //绑定tab......................................
+        $('.titleTabOption').click(function () {
+            qIndex = $(this).index('.titleTabOption');
+
+            tabQuestion(qIndex);
+        })
+        $('.option')
+                .css({
+                    width: (100 / 1 - 2) + '%',
+                })
+                .click(function () {
+                    $(this).addClass('optionClicked').siblings().removeClass('optionClicked');
+                })
+
+        function tabQuestion(qIndex) {
+            $('.titleTabOption').eq(qIndex).addClass('titleTabOptionCurrent').siblings().removeClass('titleTabOptionCurrent');
+            $('.questionLi').eq(qIndex).show().siblings().hide();
+        }
+    })
+</script>
+</body>
+</html>

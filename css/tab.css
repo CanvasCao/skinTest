@@ -1,0 +1,37 @@
+.titleTab {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.titleTab span {
+    font-size: 1.5rem;
+    margin: 0rem 0.2rem;
+    color: #999;
+}
+
+.titleTabOptionCurrent {
+    position: relative;
+    color: black !important;
+}
+
+.titleTabOptionCurrent::before {
+    position: absolute;
+    content: '';
+    width: 80%;
+    height: 0.1rem;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: -1rem;
+    background: #3881E0;
+}
+
+.questionUl {
+}
+
+.questionLi {
+    float: left;
+    width: 100%;
+}

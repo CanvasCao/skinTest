@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肤质检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/skinTest.css"/>
+    <style type="text/css"></style>
+</head>
+<body>
+<div class="container">
+    <div class='title'>
+        <div class='titleDes'>请描述一下自己</div>
+    </div>
+
+    <!-- 第一种 回答不带图-->
+    <div class='question'>你的年龄</div>
+    <div class='answer'>
+        <div class='option'><span>25+</span></div>
+        <div class='option'><span>25-</span></div>
+        <div class='optionClearBoth'></div>
+
+    </div>
+
+    <!-- 第二种 回答带图-->
+    <div class='question'>你的性别</div>
+    <div class='answer'>
+        <div class='option'><span>男<img src="img/man.png"/></span></div>
+        <div class='option'><span>女<img src="img/woman.png"/></span></div>
+        <div class='optionClearBoth'></div>
+
+    </div>
+
+    <div class='clearBoth'></div>
+
+    <div class='footer'>下一题</div>
+
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/response.js'></script>
+<script>
+    $(function () {
+
+//        $(this).toggleClass('optionClicked');
+//        $('.option').click(function () {
+//            $(this).addClass('optionClicked').siblings().removeClass('optionClicked');
+//        })
+        $('.option')
+                .css({
+                    width: (100 / 2 - 2) + '%',
+                })
+                .click(function () {
+                    $(this).addClass('optionClicked').siblings().removeClass('optionClicked');
+
+                })
+    })
+</script>
+</body>
+</html>

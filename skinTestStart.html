@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肤质检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/loading.css"/>
+    <style type="text/css">
+        body {
+            opacity: 0;
+            background: #F6F6F6;
+
+        }
+
+        #start {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            background: #DFCFC5;
+            display: none;
+        }
+
+        .head {
+            position: absolute;
+            top: 30%;
+            left: 22%;
+        }
+
+        .basket {
+            position: absolute;
+            top: 61.05%;
+            left: 38%;
+            transform-origin: 50% 0%;
+        }
+
+        .circle {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        .describe {
+            position: absolute;
+            left: 19%;
+            top: 12%;
+            text-align: center;
+            font-size: 1.2rem;
+            letter-spacing: 0.1rem;
+        }
+
+        .justForYou {
+            position: absolute;
+            left: 22%;
+            top: 85%;
+        }
+
+        .cloud {
+            position: absolute;
+        }
+
+        .cloud1 {
+            top: 30%;
+        }
+
+        .cloud2 {
+            top: 43%;
+        }
+
+        .cloud3 {
+            top: 56%;
+        }
+
+        .ballon {
+            position: absolute;
+            left: 26%;
+            top: 70%;
+        }
+
+        .ballon1 {
+            left: 26%;
+            top: 70%;
+        }
+
+        .ballon2 {
+            left: 66%;
+            top: 60%;
+        }
+    </style>
+</head>
+<body>
+<div class='resultLoading'>
+    <img src="img/logo.png" class='resultLogo'/>
+
+    <div class="resultTxt">loading...</div>
+</div>
+
+<div id="start">
+    <div class='describe'>你的肤质会告诉你什么产品最合适<br>快来测试吧~</div>
+    <img src="img/start/basket.png" width="26%" class='basket'/>
+
+    <img src="img/start/cloud.png" width="16%" class='cloud cloud2'/><!-- cloud的编号是按从上到下的顺序 -->
+    <img src="img/start/head.png" width="58%" class='head'/>
+    <img src="img/start/cloud.png" width="20%" class='cloud cloud1'/>
+    <img src="img/start/cloud.png" width="20%" class='cloud cloud3'/>
+
+    <img src="img/start/circle.png" width="40%" class='circle'/>
+    <img src="img/start/circle.png" width="40%" class='circle'/>
+    <img src="img/start/circle.png" width="40%" class='circle'/>
+    <img src="img/start/justForYou.png" width="55%" class='justForYou'/>
+    <img src="img/start/balloon.png" width="12%" class='ballon ballon1'/>
+    <img src="img/start/balloon.png" width="10%" class='ballon ballon2'/><!-- ballon 的编号却是按左右的  -->
+</div>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/fastclick.js'></script>
+<script src="js/searchToJson/searchToJson.js"></script>
+<script src='js/tool/response.js'></script>
+<script src='js/tool/resources.js'></script>
+<script>
+    $(function () {
+        if (!window.location.search) {
+            window.location = window.location + '?uid=10002';
+        }
+        window.searchJson = searchJson = (window.location.search.searchToJson());
+
+        FastClick.attach(document.body);
+
+        $('body').animate({opacity: 1}, 'slow', 'swing')
+
+        var resource = new Resources('json/startResource.json', function (alreayLoadNumber, totalNum, imgsArray) {
+            if (alreayLoadNumber != totalNum) {
+
+            }
+            else if (alreayLoadNumber == totalNum) {
+                $('.resultLoading').fadeOut('slow', 'swing', function () {
+                    $('#start').fadeIn('slow');
+                });
+
+
+                Velocitying();
+                function Velocitying() {
+                    $('.ballon1')
+                            .velocity({rotateZ: '5', translateY: '-0rem', scale: 0.95}, 0)
+                            .velocity({rotateZ: '-5', translateY: '0rem', scale: 1}, {loop: true, duration: 4000});
+                    $('.ballon2')
+                            .velocity({rotateZ: '-5', translateY: '-0rem', scale: 0.95}, 0)
+                            .velocity({rotateZ: '5', translateY: '0rem', scale: 1}, {loop: true, duration: 3000});
+                    //cloud..............................................
+                    var cloudDration = 20000;
+                    $('.cloud').velocity({translateX: '-50%'}, 0)
+
+                    $('.cloud1')
+                            .velocity({left: '20%'}, 0)
+                            .velocity({left: '80%'}, {loop: true, duration: cloudDration});
+                    $('.cloud3')
+                            .velocity({left: '50%'}, 0)
+                            .velocity({left: '20%'}, (cloudDration / 2))
+                            .velocity({left: '80%'}, {loop: true, duration: cloudDration});
+                    $('.cloud2')
+                            .velocity({left: '80%'}, 0)
+                            .velocity({left: '20%'}, (cloudDration))
+                            .velocity({left: '80%'}, {loop: true, duration: cloudDration});
+
+                    //head&basket...............................................
+                    $('.head')
+                            .velocity({translateX: '0.3rem'}, 0)
+                            .velocity({translateX: '-0.3rem'}, {loop: true, duration: 4000});
+
+                    $('.basket')
+                            .velocity({rotateZ: -10}, 0)
+                            .velocity({rotateZ: 10}, {loop: true, duration: 4000});
+
+                    //头顶的圈....................................................
+                    var circleDuration = 2500;
+                    var circleNum = 3;
+                    var timerArr = [];
+                    $('.circle').each(function (i, e) {
+                        (function () {
+                            setTimeout(function () {
+
+                                //..............................................
+                                var timer = setInterval(function () {
+                                    $(e).velocity({
+                                        translateX: '-50%',
+                                        scale: 1,
+                                        top: '30%',
+                                        opacity: 0.3
+                                    }, 0).velocity({
+                                        translateX: '-50%'
+                                        , scale: 2.2,
+                                        top: '12%',
+                                        opacity: 1
+                                    }, circleDuration, 'linear')
+                                }, (circleDuration + 10));
+                                timerArr.push(timer);
+                                //..............................................
+
+
+                            }, i * (circleDuration / circleNum))
+                        })(i)
+                    })
+
+                    function clearTimer() {
+                        [].forEach.call(timerArr, function (e, i, arr) {
+                            clearInterval(e);
+                            delete(e);
+                        })
+                    }
+
+                    window.clearTimer = clearTimer;
+
+                    function clearVelocity() {
+                        $('*').velocity('stop');
+                    }
+
+                    window.clearVelocity = clearVelocity;
+
+                    //init..............................................
+
+                    //bindEvent.........................................
+                    $('.basket').click(function () {
+                        window.location.href = 'skinTest.html?uid=' + searchJson.uid;
+                    })
+                }
+            }
+        })
+
+
+    })
+</script>
+</body>
+</html>

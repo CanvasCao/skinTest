@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肤质检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/skinTest.css"/>
+    <link rel="stylesheet" href="css/face.css"/>
+    <style type="text/css"></style>
+</head>
+<body>
+<div class="container">
+    <div class='title'>
+        <div class='titleDes'>勾出你的肌肤问题（可多选）</div>
+    </div>
+
+    <div class='faceDemo'>
+        <img src="img/q2/smile.png" width="50%" class='face'/>
+        <img src="img/q2/handL.png" width="10%" class='handL'/>
+        <img src="img/q2/handR.png" width="10%" class='handR'/>
+
+        <div class='problem9'>
+            <img src="img/q2/9/taitou.png" class='taitou' width="10%" style='display: none;'/>
+            <img src="img/q2/9/lunkuo.png" class='lunkuo' width="15%" style='display: none;'/>
+            <img src="img/q2/9/heitou.png" class='heitou' width="1.5%" style='display: none;'/>
+            <img src="img/q2/9/doudou.png" class='doudou' width="2%" style='display: none;'/>
+            <img src="img/q2/9/maokong.png" class='maokong' width="12%" style='display: none;'/>
+            <img src="img/q2/9/faling.png" class='faling' width="12%" style='display: none;'/>
+            <img src="img/q2/9/yandai.png" class='yandai' width="10%" style='display: none;'/>
+            <img src="img/q2/9/lianjiaL.png" class='lianjia lianjiaL' width="5.6%" style='display: none;'/>
+            <img src="img/q2/9/lianjiaR.png" class='lianjia lianjiaR' width="5.6%" style='display: none;'/>
+            <img src="img/q2/9/yuwei.png" class='yuwei' width="10%" style='display: none;'/>
+        </div>
+
+        <img src="img/q2/glass.png" width="40%" class='glass'/>
+    </div>
+    <div class='faceAnswer'>
+        <div class='option' data-name='taitou'><span>抬头纹</span></div>
+        <div class='option' data-name='lunkuo'><span>轮廓线不清晰</span></div>
+        <div class='option' data-name='heitou'><span>黑头</span></div>
+        <div class='option' data-name='doudou'><span>痘痘</span></div>
+        <div class='option' data-name='maokong'><span>毛孔粗大</span></div>
+        <div class='option' data-name='faling'><span>法令纹</span></div>
+        <div class='option' data-name='yandai'><span>眼袋</span></div>
+        <div class='option' data-name='lianjia'><span>脸颊发红</span></div>
+        <div class='option' data-name='yuwei'><span>鱼尾纹</span></div>
+        <div class='option optionPerfect'><span>完美肌肤</span></div>
+    </div>
+
+    <div class='clearBoth'></div>
+    <div class='footer'>下一题</div>
+
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/response.js'></script>
+<script>
+    $(function () {
+
+        $options = $('.option');
+        $optionPerfect = $('.optionPerfect');
+        $face = $('.face');
+        $problem9 = $('.problem9');
+        //一般选项占1/3行
+        $options
+                .css({
+                    width: (100 / 3 - 2) + '%',
+                })
+
+            //点击事件.............................
+                .click(function () {
+                    //图片切换.............................
+                    var dataName = $(this).attr('data-name');
+                    $('.' + dataName).toggle();
+
+
+                    $(this).toggleClass('optionChoosed');
+
+                    //选中状态代码.....................................
+                    //如果点击的是完美肤质 ..................
+                    if ($(this).hasClass("optionPerfect")) {
+
+                        $options.removeClass('optionChoosed');
+                        $optionPerfect.addClass('optionChoosed');
+                        $problem9.find('img').hide();
+                    } else {
+                        $optionPerfect.removeClass('optionChoosed');
+                    }
+
+                    //3个变哭脸..........................
+                    var len = $('.optionChoosed').length;
+                    if (len >= 3) {
+                        $face.attr({src: 'img/q2/cry.png'})
+                    } else {
+                        $face.attr({src: 'img/q2/smile.png'})
+                    }
+                })
+
+        //其他选项占1行
+        $optionPerfect.css({
+            width: (100 / 1 - 2) + '%',
+        });
+
+        //这一页的文字选项缩小
+        $options.find('span').css({'font-size': '1.1rem'})
+
+
+        //手部移动.............................
+        $('.handL')
+                .velocity({translateX: '-1rem'}, 0)
+                .velocity({translateX: '1rem'}, {loop: true, duration: 2000})
+        $('.handR')
+                .velocity({translateX: '-1rem'}, 0).delay(500)
+                .velocity({translateX: '1rem'}, {loop: true, duration: 2000})
+
+        $('.glass')
+                .velocity({translateY: '-0.1rem'}, 0)
+                .velocity({translateY: '0.1rem'}, {loop: true, duration: 2000})
+
+    })
+</script>
+</body>
+</html>

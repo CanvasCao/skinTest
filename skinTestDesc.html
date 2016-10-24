@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肤质状况说明</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="http://7xo2me.com1.z0.glb.clouddn.com/preloadCss/loader.min.css"/>
+    <link rel="stylesheet" href="css/desc.css"/>
+</head>
+
+<body>
+
+<div id='loading'>
+    <div class="loader">
+        <div class="loader-inner ball-spin-fade-loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class='loader-innerText'>loading...</div>
+    </div>
+</div>
+
+<div id='loaded' style='display: none;'>
+    <div class="cd">
+        <h3>您的肤质状况是：</h3>
+        <ul id="userdesc"></ul>
+        <div class="xfc">
+            <p><a href="skin1">肤质解读</a></p>
+
+            <p><a href="skin3">重新测试</a><a href="skin2">产品推荐</a></p>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src='js/tool/response.js'></script>
+<script src='js/tool/RoshanBB.js'></script>
+<script src='js/tool/fastclick.js'></script>
+<script src='js/constant/jimiHost.js'></script>
+
+<script src="js/searchToJson/searchToJson.js"></script>
+<script>
+    $(function () {
+
+        if (!window.location.search) {
+            window.location = window.location + '?uid=10002';
+        }
+        window.searchJson = searchJson = (window.location.search.searchToJson());
+
+        FastClick.attach(document.body);
+
+
+        $.ajax({
+            type: "post",
+//            url: jimiHost + "/AjaxPostGetUserSkinDesc.php",
+            url: "http://n1.jimi.la/apps_V9.3/AjaxPostGetUserSkinDesc.php",
+//                url: 'package.json',
+            data: {uid: searchJson.uid},
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "jsonpcallback",
+            success: function (data) {
+                $('#loading').hide();
+                $('#loaded').show();
+
+                console.log(JSON.stringify(data));
+                var html = "";
+                var len = data['desc'].length;
+                for (var i = 0; i < len; i++) {
+                    html += '<li>';
+                    html += '<h5>' + data['desc'][i] + '</h5>';
+                    html += '<p>' + data['answer'][i] + '</p>';
+                    html += '</li>';
+                }
+                $('#userdesc').html(html);
+            },
+            error: function (err) {
+                console.log('ERROR!');
+                console.log(err);
+            }
+        });
+    })
+</script>
+</html>
+

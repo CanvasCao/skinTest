@@ -1,0 +1,79 @@
+
+.resultLoaded {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /*background-color: #111;*/
+    background: url("../img/result/black.jpg");
+    background-size: cover;
+    display: none;
+}
+
+.resultImgCon {
+
+}
+
+.resultBtn {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.resultRestart, .resultShare {
+    display: inline-block;
+    width: 10rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 0.6rem;
+    text-align: center;
+    font-size: 1.4rem;
+    background-color: #FFBB00;
+    color: white;
+    margin: 0 0.5rem;
+    box-shadow: inset 1px -1px 9px rgba(255, 255, 255, 0.2);
+}
+
+.resultMore {
+    position: fixed;
+    bottom: 0;
+    height: 4.8rem;
+    width: 100%;
+    background-color: white;
+    padding: 0.8rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.resultMoreTxt1, .resultMoreTxt2 {
+    line-height: 3.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.resultMoreTxt1 {
+    float: left;
+}
+
+.resultProducts {
+    float: left;
+    height: 3.5rem;
+}
+
+.resultProducts img {
+    display: inline-block;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin: 0 0.5rem;
+}
+
+.resultMoreTxt2 {
+    float: right;
+}
+
+

@@ -1,0 +1,157 @@
+
+.container {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #F6F6F6;
+    overflow: scroll;
+}
+
+.title {
+    background: #F6F6F6;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    padding: 1.5rem 1rem 1rem 1rem;
+}
+
+.title img {
+    width: 3rem;
+    display: inline-block;
+}
+
+.titleDes {
+    font-size: 1.5rem;
+    display: inline-block;
+    position: relative;
+    text-indent: 2rem;
+}
+
+.titleDes::before {
+    position: absolute;
+    content: "";
+    left: 0rem;
+    top: 0.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url("../img/tick.png");
+    background-size: contain;
+}
+
+.question {
+    font-size: 1.4rem;
+    clear: both;
+    box-sizing: border-box;
+    padding: 1.6rem 1rem 1.2rem;
+}
+
+.answerImg {
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+}
+
+.answer {
+    /*clear: both;*/
+    box-sizing: border-box;
+    padding: 1rem 0.8rem;
+}
+
+.option {
+    box-sizing: border-box;
+    display: inline-block;
+    float: left;
+    border-radius: 3rem;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 0.9rem 0rem;
+    background: white;
+    width: 48%;
+    margin: 0rem 1% 0.8rem;
+    position: relative;
+}
+
+.option span {
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    position: relative;
+}
+
+.option span img {
+    position: absolute;
+    height: 1.5rem;
+    left: -1.8rem;
+}
+
+.optionClicked::before {
+    position: absolute;
+    content: "";
+    background: url("../img/clicked.png");
+    background-size: contain;
+    left: 0.5rem;
+    top: 0.8rem;
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.optionChoosed {
+    background-color: #3881E0;
+    color: #fff;
+}
+
+.optionClearBoth {
+    clear: both;
+    height: 1rem;
+}
+
+.clearBoth {
+    clear: both;
+    height: 3.8rem;
+}
+
+.footer {
+
+    position: fixed;
+    bottom: 0rem;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    background: white;
+}
+
+.footerTxt {
+    line-height: 1.7rem;
+    font-size: 1.7rem;
+    color: #666;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.lastQuestion, .nextQuestion {
+    font-size: 1.5rem;
+    top: 0rem;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 1.1rem 0rem;
+}
+
+.lastQuestion, .footerTxt, .nextQuestion {
+    width: 33%;
+    display: inline-block;
+
+}
+
+.btnQuestion {
+    border: 1px solid #000;
+    color: #666;
+    text-align: center;
+    display: inline-block;
+    width: 1.8rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+
+    border-radius: 50%;
+
+}

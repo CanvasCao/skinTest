@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肌秘检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/skinTest.css"/>
+    <link rel="stylesheet" href="css/loading.css"/>
+
+    <!-- 结果页 css-->
+    <link rel="stylesheet" href="css/result.css"/>
+
+
+    <style type="text/css">
+        body {
+            opacity: 1;
+            background: #F6F6F6;
+        }
+
+        .moreRight {
+            position: absolute;
+            right: 5rem;
+            top: 0.5rem;
+            text-align: right;
+        }
+
+        .jimi {
+            width: 6.6rem;
+        }
+
+        .moreRight div {
+            margin: 0.5rem 0rem;
+        }
+
+        .moreRight img {
+            position: absolute;
+            right: -4.5rem;
+            top: 0;
+            display: block;
+            width: 4rem;
+            height: 4rem;
+        }
+    </style>
+</head>
+<body>
+<img src="img/shareDefault.png" width="301" style='display: none'/>
+
+<div class='resultLoading'>
+    <img src="img/logo.png" class='resultLogo'/>
+
+    <div class="resultTxt"> 测试结果马上就要出来啦<br>心里有点小激动</div>
+</div>
+
+<div class='resultLoaded'>
+    <div class="resultImgCon"></div>
+    <div class='resultBtn'>
+        <span class='resultRestart'>我也要测试</span>
+    </div>
+
+
+    <div class='resultMore'>
+        <img src="img/jimi.png" class='jimi'/>
+
+        <div class='moreRight'>
+            <div></div>
+            <div>您命中注定的化妆品</div>
+            <img src="img/logo.png"/>
+        </div>
+    </div>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/response.js'></script>
+<script src='js/tool/fastclick.js'></script>
+<script src='js/tool/RoshanBB.js'></script>
+<script src="js/searchToJson/searchToJson.js"></script>
+<script src="js/globalManager/globalManager.js"></script>
+<script src='js/constant/jimiHost.js'></script>
+<script src='js/controller/controller.js'></script>
+
+<script>
+    $(function () {
+        if (!window.location.search) {
+            window.location = window.location + '?uid=10002';
+        }
+        window.searchJson = searchJson = (window.location.search.searchToJson());
+
+        FastClick.attach(document.body);
+
+        //body 显示..............................................
+        $('body').animate({opacity: 1}, 'slow');
+
+        controller.getSkinTestResult(searchJson.uid, function (products) {
+            var product = products[0];
+            $moreRight = $('.moreRight');
+            $moreRight.find('div').eq(0).html(product.pname);
+            $moreRight.find('img').attr({src: product.imgUrl});
+        });
+
+
+        //bindEvent..............................................
+        $('.resultRestart,.resultMore').click(function () {
+            var ua = navigator.userAgent;
+            if (ua.charAt('iphone') != -1 && ua.charAt('Mac') != -1) {//说明不是IPHONE
+                window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.jimi.skinsecret#opened';
+            }
+            else {
+                window.location.href = 'https://itunes.apple.com/us/app/id1074206874';
+            }
+        })
+
+    })
+</script>
+</body>
+</html>

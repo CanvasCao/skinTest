@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肌秘检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/skinTest.css"/>
+    <link rel="stylesheet" href="css/loading.css"/>
+    <link rel="stylesheet" href="css/result.css"/>
+    <style type="text/css">
+        body {
+            opacity: 1;
+            background: #F6F6F6;
+        }
+    </style>
+</head>
+<body>
+<div class='resultLoading'>
+    <img src="img/logo.png" class='resultLogo'/>
+
+    <div class="resultTxt"> 测试结果马上就要出来啦<br>心里有点小激动</div>
+</div>
+
+<div class='resultLoaded'>
+    <div class="resultImgCon"></div>
+    <div class='resultBtn'>
+        <span class='resultRestart'>重新测试</span>
+        <span class='resultShare'>我要分享</span>
+    </div>
+
+
+    <div class='resultMore'>
+        <div class='resultMoreTxt1'>推荐产品 :</div>
+        <div class='resultProducts'></div>
+        <div class='resultMoreTxt2'>查看更多→</div>
+    </div>
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/response.js'></script>
+<script src='js/tool/RoshanBB.js'></script>
+<script src='js/tool/fastclick.js'></script>
+<script src='js/constant/jimiHost.js'></script>
+
+<script src="js/searchToJson/searchToJson.js"></script>
+<script src='js/controller/controller.js'></script>
+<script>
+    $(function () {
+
+        if (!window.location.search) {
+            window.location = window.location + '?uid=10002';
+        }
+        window.searchJson = searchJson = (window.location.search.searchToJson());
+
+        FastClick.attach(document.body);
+
+        controller.getSkinTestResult(searchJson.uid, function (products) {
+            //appendProductImg...........................
+            var str = '';
+            for (i = 0; i < 3; i++) {
+                str += "<img src='" + products[i].imgUrl + "' />"
+            }
+            $('.resultProducts').html(str);
+        });
+        //点击分享a标签.......................................................
+        $('.resultShare').RoshanBB('http://www.skinTestShare.html');
+
+        //bindEvent.....................................................
+        $('.resultRestart').click(function () {
+            window.location.href = 'skinTest.html?uid=' + searchJson.uid;
+        });
+
+        $('.resultMore').RoshanBB('http://www.skinTestProductsMore.html');
+    })
+</script>
+</body>
+</html>

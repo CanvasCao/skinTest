@@ -1,0 +1,36 @@
+.resultLoading {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 62%;
+    border-radius: 2rem;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 4rem 2rem;
+}
+
+.resultLogo {
+    width: 6rem;
+    margin: 0px auto;
+    display: block;
+    margin-bottom: 1.2rem;
+    animation: rotate 8s ease 0s infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(3600deg);
+    }
+}
+
+.resultTxt {
+    text-align: center;
+    font-size: 1.3rem;
+}

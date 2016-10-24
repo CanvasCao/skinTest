@@ -1,0 +1,97 @@
+.faceDemo {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-top: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.faceDemo img {
+    /*position: absolute;*/
+    display: block;
+    margin: 0 auto;
+}
+
+.handL {
+    position: absolute;
+    bottom: -4%;
+    left: 23%;
+}
+
+.handR {
+    position: absolute;
+    bottom: -4%;
+    left: 66%;
+}
+
+.glass {
+    position: absolute;
+    top: 54%;
+    left: 30%;
+}
+
+.taitou {
+    position: absolute;
+    top: 25%;
+    left: 16%;
+}
+
+.lunkuo {
+    position: absolute;
+    top: 85%;
+    left: 42%;
+}
+
+.heitou {
+    position: absolute;
+    top: 74%;
+    left: 49%;
+}
+
+.doudou {
+    position: absolute;
+    top: 78%;
+    left: 53%;
+}
+
+.maokong {
+    position: absolute;
+    top: 77%;
+    left: 44%;
+}
+
+.faling {
+    position: absolute;
+    top: 75%;
+    left: 44.4%;
+}
+
+.yandai {
+    position: absolute;
+    top: 40%;
+    left: 76%;
+}
+
+.lianjiaL {
+    position: absolute;
+    top: 74%;
+    left: 59%;
+}
+
+.lianjiaR {
+    position: absolute;
+    top: 74%;
+    left: 36%;
+}
+
+.yuwei {
+    position: absolute;
+    top: 55%;
+    left: 10%;
+}
+
+.faguang {
+    position: absolute;
+    top: 0%;
+    left: 16%;
+}

@@ -1,0 +1,25 @@
+http://n1.jimi.la/apps_T1/caculateNewSkin.php
+
+uid & result
+
+ {"0": {"sex": 2,"cid":"4,7","arr": [{"type": 5,"score": 3},{"type": 3,"score": 1}]},"1":{"arr":[{"type":1,"score":1},{"type":2,"score":1},{"type":3,"score":2},{"type":5,"score":1}]},"2":{"arr":[{"type":4,"score":1},{"type":6,"score":1},{"type":7,"score":2},{"type":6,"score":1}]} }
+
+去黑头 190
+
+乳液60 面霜61
+
+type含义
+1 肤质甘油  1干 2油 3混
+2 敏
+3 痘
+4 黑
+5 熟
+6 干油发质   1干 2油
+7 受损
+
+
+
+cid
+去黑头 190
+乳液60 面霜61
+防护 "69,70,191"

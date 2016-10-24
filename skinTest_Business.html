@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+
+    <title>肌秘检测</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="http://7xo2me.com1.z0.glb.clouddn.com/preloadCss/loader.min.css"/>
+    <link rel="stylesheet" href="css/skinTest.css"/>
+    <!--第二题 face 专用css-->
+    <link rel="stylesheet" href="css/face.css"/>
+    <!--第三题 tab 专用css-->
+    <link rel="stylesheet" href="css/tab.css"/>
+</head>
+<body>
+
+<div id='loading'>
+    <div class="loader">
+        <div class="loader-inner ball-spin-fade-loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class='loader-innerText'>loading...</div>
+    </div>
+</div>
+
+<div id='loaded' style='display: none;'>
+    <div id='containerCon'>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container container2"></div>
+        <div class="container container3"></div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class="container">
+            <div class='q1'></div>
+            <div class='clearBoth'></div>
+        </div>
+        <div class='footer'>
+            <span class='lastQuestion'><span class='btnQuestion'><</span></span><span class='footerTxt'></span><span
+                class='nextQuestion'><span class='btnQuestion'>></span></span>
+        </div>
+    </div>
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src='js/tool/velocity.min.js'></script>
+<script src='js/tool/velocity.ui.js'></script>
+<script src='js/tool/response.js'></script>
+<script src='js/tool/fastclick.js'></script>
+<script src='js/tool/RoshanBB.js'></script>
+<script src="js/searchToJson/searchToJson.js"></script>
+<script src="js/globalManager/globalManager.js"></script>
+<script src='js/class/normalQuestion.js'></script>
+<script src='js/constant/jimiHost.js'></script>
+<script src='js/controller/controller.js'></script>
+<script src='js/question/qAll.js'></script>
+<script src='js/class/jimiAlert.js'></script>
+
+<script>
+    $(function () {
+
+        $('#loading').hide();
+        $('#loaded').show();
+
+        if (!window.location.search) {
+            window.location = window.location + '?uid=1';
+        }
+        window.searchJson = searchJson = (window.location.search.searchToJson());
+        FastClick.attach(document.body);
+
+        //Params......................................................
+        var result = {}
+        var pjaxParams = {
+            uid: searchJson.uid,
+//            result: {},
+            sex: 0,
+        }
+        GM.pjaxParams = pjaxParams;
+        var $container = GM.$container;
+        var $footer = $('.footer');
+        var questionIndex = 0;
+
+        //init....................................
+        //第一个显示 其他隐藏.......................
+        $container.eq(0).show().siblings('.container').hide();
+        changeFooter();
+
+        //bindEvent.......................................................
+        //上一题逻辑
+        $footer.find('.lastQuestion').click(function () {
+//            var $parent = $container.eq(questionIndex);
+            questionIndex--
+            if (questionIndex < 0) {
+                questionIndex = 0;
+                return;
+            }
+            changeFooter();
+            $footer.find('.nextQuestion a').remove();
+        })
+
+        //整体 下一题逻辑..................................................
+        $footer.find('.nextQuestion').click(function () {
+            var $parent = $container.eq(questionIndex);
+
+            //还没有选答案的不能点下一题........................................
+            //flag是标记位 true代表有没选的题目....................................
+            var flagIfZero = false;
+            $parent.find('.answer').each(function () {
+                var chooseLen = $(this).find('.optionClicked,.optionChoosed').length;
+                if (chooseLen == 0) {
+                    flagIfZero = true;
+                }
+            })
+            if (flagIfZero) {
+                alert('选完再跳嘛~');
+                return;
+            }
+
+            //第0题要丧心病狂记录性别..........................
+            if (questionIndex == 0) {
+                var sexNum = $parent.find('.answer').eq(1).find('.optionClicked').index();
+                pjaxParams.sex = (sexNum == 1) ? 0 : 1 //选了第0个就是男1  第1个就是女0
+            }
+
+            //很重要的逻辑记录参数..................................................................
+            result[questionIndex] = {arr: [], fid: []};
+            var obj = result[questionIndex]
+            var arr = obj.arr;
+            var fid = obj.fid;
+
+            $parent.find('.option').each(function (i, e) {
+
+                //如果不是被选中的 直接return.............................................
+                if (!$(e).hasClass('optionClicked') && !$(e).hasClass('optionChoosed')) {
+                    return;
+                }
+                //是被选中的选项 看有没有 类型加分.........................................
+                if ($(e).attr('data-type') && $(e).attr('data-score')) {
+                    arr.push({type: $(e).attr('data-type'), score: $(e).attr('data-score')})
+                }
+                if ($(e).attr('data-cid')) {
+                    obj.cid = $(e).attr('data-cid');
+                }
+                if ($(e).attr('data-fid')) {
+                    fid.push($(e).attr('data-fid'));
+                }
+
+            });
+            //记录参数..................................................................
+
+
+            //最后一题的话 直接return....................................................
+            if (questionIndex == $container.length - 1) {
+                pjaxParams.result = JSON.stringify(result);
+
+                setTimeout(function () {
+                    $.ajax({
+                        type: "get",
+                        url: 'http://n1.jimi.la/apps_T1/WXTESTInterface/AjaxGetSkinPorductByUid.php',
+//                url: 'package.json',
+                        data: pjaxParams,
+                        dataType: "jsonp",
+                        jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                        jsonpCallback: "jsonpcallback",
+                        success: function (data) {
+                            console.log(JSON.stringify(data));
+                        },
+                        error: function (err) {
+                            console.log('ERROR!');
+                            console.log(err);
+                        }
+                    })
+                }, 10)
+            }
+            else {
+                //下一题显示...........................................
+                questionIndex++
+                changeFooter();
+                //否则移除a标签.........................................
+                $footer.find('.nextQuestion a').remove();
+            }
+
+        });
+
+        //最后一题的选项被点击以后加a标签....................................
+        $container.eq($container.length - 1).find('.option').click(function () {
+            if ($footer.find('.nextQuestion a').length == 0) {
+                $footer.find('.nextQuestion').RoshanBB('jimi://www.fuzhishuoming.html');
+            }
+        })
+
+        //Fns...............................................................
+        function changeFooter() {
+            $container.eq(questionIndex).show().siblings('.container').hide();
+
+            if (questionIndex == 0) {
+                $footer.find('.lastQuestion').css({opacity: 0});
+            }
+//            else if (questionIndex == $container.length - 1) {
+//                $footer.find('.nextQuestion').hide();
+//            }
+            else {
+                $footer.find('.nextQuestion,.lastQuestion').css({opacity: 1});
+            }
+
+            $footer.find('.footerTxt').html('题 ' + (questionIndex + 1) + '/' + $container.length + '');
+        }
+
+        //debug...............................................................
+        $(window).keydown(function (e) {
+            if (e.keyCode == 13) {
+                $footer.find('.nextQuestion').click();
+            }
+        })
+    })
+</script>
+</body>
+</html>

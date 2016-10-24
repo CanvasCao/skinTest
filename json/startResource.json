@@ -1,0 +1,32 @@
+{
+  "images": [
+    {
+      "name": "basket",
+      "src": "img/start/basket.png"
+    },
+    {
+      "name": "cloud",
+      "src": "img/start/cloud.png"
+    },
+    {
+      "name": "head",
+      "src": "img/start/head.png"
+    },
+    {
+      "name": "circle",
+      "src": "img/start/circle.png"
+    },
+    {
+      "name": "justForYou",
+      "src": "img/start/justForYou.png"
+    },
+    {
+      "name": "basket",
+      "src": "img/start/basket.png"
+    },
+    {
+      "name": "balloon",
+      "src": "img/start/balloon.png"
+    }
+  ]
+}
