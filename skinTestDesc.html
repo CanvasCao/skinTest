@@ -63,10 +63,8 @@
 
 
         $.ajax({
-            type: "post",
-//            url: jimiHost + "/AjaxPostGetUserSkinDesc.php",
-            url: "http://n1.jimi.la/apps_V9.3/AjaxPostGetUserSkinDesc.php",
-//                url: 'package.json',
+            type: "get",
+            url: jimiHost + "/AjaxPostGetUserSkinDesc.php",
             data: {uid: searchJson.uid},
             dataType: "jsonp",
             jsonp: "callback",
