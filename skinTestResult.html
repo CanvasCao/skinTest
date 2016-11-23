@@ -30,12 +30,11 @@
         <span class='resultRestart'>重新测试</span>
         <span class='resultShare'>我要分享</span>
     </div>
-
-
     <div class='resultMore'>
-        <div class='resultMoreTxt1'>推荐产品 :</div>
         <div class='resultProducts'></div>
-        <div class='resultMoreTxt2'>查看更多→</div>
+        <img src="img/result/arrow.png" class="resultArrow"/>
+        <!--<img src="img/result/mascot2.png" class="resultMascot"/>-->
+        <a href="http://www.skinTestProductsMore.html" class="resultMascot"></a>
     </div>
 </div>
 
@@ -46,9 +45,9 @@
 <script src='js/tool/RoshanBB.js'></script>
 <script src='js/tool/fastclick.js'></script>
 <script src='js/constant/jimiHost.js'></script>
-
 <script src="js/searchToJson/searchToJson.js"></script>
 <script src='js/controller/controller.js'></script>
+
 <script>
     $(function () {
 
@@ -75,7 +74,7 @@
             window.location.href = 'skinTest.html?uid=' + searchJson.uid;
         });
 
-        $('.resultMore').RoshanBB('http://www.skinTestProductsMore.html');
+//        $('.resultMore').RoshanBB('http://www.skinTestProductsMore.html');
     })
 </script>
 </body>

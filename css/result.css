@@ -17,7 +17,7 @@
 
 .resultBtn {
     position: absolute;
-    top: 80%;
+    top: 81%;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
@@ -28,12 +28,12 @@
 
 .resultRestart, .resultShare {
     display: inline-block;
-    width: 10rem;
-    height: 3rem;
-    line-height: 3rem;
+    width: 9.4rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
     border-radius: 0.6rem;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     background-color: #FFBB00;
     color: white;
     margin: 0 0.5rem;
@@ -42,38 +42,40 @@
 
 .resultMore {
     position: fixed;
-    bottom: 0;
-    height: 4.8rem;
+    bottom: 1rem;
     width: 100%;
-    background-color: white;
-    padding: 0.8rem 1.5rem;
     box-sizing: border-box;
-}
-
-.resultMoreTxt1, .resultMoreTxt2 {
-    line-height: 3.5rem;
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.resultMoreTxt1 {
-    float: left;
+    padding-left: 10%;
+    background-color: transparent;
 }
 
 .resultProducts {
     float: left;
-    height: 3.5rem;
+    /*height: 3.5rem;*/
 }
 
 .resultProducts img {
     display: inline-block;
-    width: 3.2rem;
-    height: 3.2rem;
-    margin: 0 0.5rem;
+    width:  15%;
+    height: 15%;
+    margin: 0 0.6rem;
+    border-radius: 50%;
+    border: 1px solid #cccccc;
 }
 
-.resultMoreTxt2 {
-    float: right;
+.resultArrow {
+    position: absolute;
+    right: 23%;
+    top: 28%;
+    width: 8%;
 }
-
-
+.resultMascot {
+    position: absolute;
+    right: 4%;
+    bottom: 0%;
+    width: 15%;
+    height: 140%;
+    /*border: 1px solid #fff;*/
+    background-image: url("../img/result/mascot2.png");
+    background-size: contain;
+}
