@@ -72,10 +72,11 @@
 .resultMascot {
     position: absolute;
     right: 4%;
-    bottom: 0%;
+    bottom: 3%;
     width: 15%;
-    height: 140%;
+    height: 120%;
     /*border: 1px solid #fff;*/
-    background-image: url("../img/result/mascot2.png");
+    background-image: url("../img/result/mascot2.png") ;
+    background-repeat: no-repeat;
     background-size: contain;
 }
